@@ -1,303 +1,277 @@
 /* ═══════════════════════════════════════════════════════════════
-   ORACLE DES NOMBRES - Styles flamboyants
+   ORACLE DES NOMBRES — Design éditorial sobre
+   Palette neutre + un seul accent bleu ardoise.
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
-  --gold: #d4af37;
-  --gold-bright: #ffd700;
-  --gold-dark: #9a7b1e;
-  --purple: #1a0033;
-  --purple-deep: #0a0015;
-  --purple-mid: #2a0852;
-  --cream: #f5e6c8;
-  --red-danger: #c8102e;
-  --star-glow: rgba(255, 215, 0, 0.6);
+  /* Base neutre */
+  --bg: #fafaf7;
+  --bg-elevated: #ffffff;
+  --bg-subtle: #f2f1ec;
+  --border: #e5e3dc;
+  --border-strong: #d4d1c7;
+
+  /* Texte */
+  --text: #1a1a1a;
+  --text-muted: #5c5a54;
+  --text-light: #8a877f;
+
+  /* Accent unique (bleu ardoise) */
+  --accent: #2c5f7c;
+  --accent-hover: #204862;
+  --accent-subtle: #eaf0f4;
+
+  /* Étoiles EuroMillions (jaune doux, pas clinquant) */
+  --star-bg: #faf3d8;
+  --star-border: #c9a227;
+  --star-text: #6b4e00;
+
+  /* Alerte jeu */
+  --danger: #b3261e;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
-  font-family: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
-  background: var(--purple-deep);
-  color: var(--cream);
-  min-height: 100vh;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: var(--text);
+  background: var(--bg);
+  font-size: 16px;
+  line-height: 1.6;
 }
 
 body {
-  background:
-    radial-gradient(ellipse at top, var(--purple-mid) 0%, var(--purple) 40%, var(--purple-deep) 100%),
-    var(--purple-deep);
-  background-attachment: fixed;
   min-height: 100vh;
-  padding-bottom: 60px;
-  position: relative;
-  overflow-x: hidden;
+  padding-bottom: 40px;
 }
 
-/* Étoiles scintillantes en fond */
-body::before {
-  content: '';
-  position: fixed;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background-image:
-    radial-gradient(1px 1px at 20% 30%, white, transparent),
-    radial-gradient(1px 1px at 60% 70%, white, transparent),
-    radial-gradient(1px 1px at 80% 10%, white, transparent),
-    radial-gradient(2px 2px at 15% 80%, var(--gold), transparent),
-    radial-gradient(1px 1px at 90% 50%, white, transparent),
-    radial-gradient(1px 1px at 40% 20%, white, transparent),
-    radial-gradient(1.5px 1.5px at 70% 40%, var(--gold-bright), transparent),
-    radial-gradient(1px 1px at 10% 60%, white, transparent),
-    radial-gradient(1px 1px at 95% 85%, white, transparent);
-  background-size: 100vw 100vh;
-  opacity: 0.6;
-  pointer-events: none;
-  z-index: 0;
-  animation: twinkle 4s ease-in-out infinite alternate;
+/* ─── Bandeaux (haut de page) ─────────────────────────────── */
+
+.parody-tag {
+  background: var(--bg-subtle);
+  color: var(--text-muted);
+  text-align: center;
+  padding: 7px 16px;
+  font-size: 12px;
+  letter-spacing: 1.2px;
+  font-weight: 500;
+  border-bottom: 1px solid var(--border);
+  text-transform: uppercase;
 }
 
-@keyframes twinkle {
-  0% { opacity: 0.4; }
-  100% { opacity: 0.8; }
-}
-
-/* Bandeau anti-jeu omniprésent */
 .danger-banner {
-  background: var(--red-danger);
-  color: white;
+  background: #fdf5f4;
+  color: var(--danger);
   text-align: center;
   padding: 10px 16px;
-  font-family: sans-serif;
   font-size: 13px;
-  font-weight: 600;
-  position: relative;
-  z-index: 10;
-  border-bottom: 2px solid rgba(0,0,0,0.3);
+  font-weight: 500;
+  border-bottom: 1px solid #f0d4d1;
 }
+.danger-banner a { color: var(--danger); text-decoration: underline; }
 
-.danger-banner a {
-  color: white;
-  text-decoration: underline;
-}
-
-/* Disclaimer parodie permanent */
-.parody-tag {
-  background: rgba(0,0,0,0.4);
-  color: var(--gold);
-  text-align: center;
-  padding: 8px;
-  font-size: 12px;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  font-family: sans-serif;
-  font-weight: 600;
-  border-bottom: 1px solid var(--gold-dark);
-  position: relative;
-  z-index: 10;
-}
+/* ─── Structure ───────────────────────────────────────────── */
 
 main {
-  max-width: 960px;
+  max-width: 780px;
   margin: 0 auto;
-  padding: 40px 20px;
-  position: relative;
-  z-index: 1;
+  padding: 56px 24px 24px;
 }
 
+/* ─── Titres ──────────────────────────────────────────────── */
+
 h1 {
-  font-size: clamp(36px, 7vw, 68px);
+  font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
+  font-size: clamp(32px, 5.5vw, 48px);
+  font-weight: 600;
+  color: var(--text);
   text-align: center;
-  color: var(--gold);
-  letter-spacing: 6px;
-  text-transform: uppercase;
-  text-shadow:
-    0 0 20px var(--gold),
-    0 0 40px rgba(212, 175, 55, 0.5);
+  letter-spacing: -0.02em;
+  line-height: 1.15;
   margin-bottom: 8px;
-  line-height: 1.1;
-  font-weight: 400;
 }
 
 h1 .ornament {
-  color: var(--gold-dark);
-  margin: 0 16px;
-  font-size: 0.7em;
+  display: none;  /* on enlève les ornements dorés */
 }
 
 .subtitle {
   text-align: center;
-  color: var(--cream);
-  font-style: italic;
-  font-size: 18px;
-  letter-spacing: 2px;
+  color: var(--text-muted);
+  font-size: 16px;
   margin-bottom: 40px;
-  opacity: 0.85;
-}
-
-h2 {
-  font-size: clamp(24px, 4vw, 38px);
-  color: var(--gold);
-  text-align: center;
-  letter-spacing: 3px;
-  margin: 40px 0 20px;
-  text-transform: uppercase;
   font-weight: 400;
 }
 
+h2 {
+  font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 48px 0 16px;
+  letter-spacing: -0.01em;
+}
+
 h3 {
-  color: var(--gold-bright);
-  font-size: 22px;
-  margin: 24px 0 12px;
-  font-style: italic;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 24px 0 10px;
 }
 
 p {
-  font-size: 17px;
+  font-size: 16px;
   line-height: 1.7;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
+  color: var(--text);
 }
 
-a { color: var(--gold-bright); }
+a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+a:hover { color: var(--accent-hover); }
 
-/* Navigation */
+/* ─── Navigation ─────────────────────────────────────────── */
+
 nav {
-  text-align: center;
-  margin-bottom: 30px;
-  padding: 14px;
-  border-top: 1px solid var(--gold-dark);
-  border-bottom: 1px solid var(--gold-dark);
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  margin: 32px 0 40px;
+  border-bottom: 1px solid var(--border);
 }
 
 nav a {
-  margin: 0 18px;
-  color: var(--cream);
+  padding: 12px 20px;
+  color: var(--text-muted);
   text-decoration: none;
-  font-family: sans-serif;
   font-size: 14px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  transition: color 0.3s;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: color 0.15s, border-color 0.15s;
 }
 
-nav a:hover, nav a.active {
-  color: var(--gold-bright);
-  text-shadow: 0 0 10px var(--gold);
+nav a:hover {
+  color: var(--text);
 }
 
-/* Grille de boules */
+nav a.active {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  font-weight: 600;
+}
+
+/* ─── Boules de tirage ───────────────────────────────────── */
+
 .prediction-grid {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 14px;
+  gap: 10px;
   flex-wrap: wrap;
-  margin: 32px 0;
+  margin: 28px 0;
 }
 
 .ball {
-  width: 68px;
-  height: 68px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #fff 0%, #f5f5dc 40%, #e8d9a8 100%);
-  border: 3px solid var(--gold);
+  background: var(--bg-elevated);
+  border: 1.5px solid var(--border-strong);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: 'Georgia', serif;
-  font-size: 28px;
-  font-weight: 700;
-  color: var(--purple-deep);
-  box-shadow:
-    0 0 20px var(--star-glow),
-    inset 0 -4px 8px rgba(0,0,0,0.2);
-  animation: ball-glow 3s ease-in-out infinite alternate;
-}
-
-@keyframes ball-glow {
-  0% { box-shadow: 0 0 15px var(--star-glow), inset 0 -4px 8px rgba(0,0,0,0.2); }
-  100% { box-shadow: 0 0 30px var(--gold), inset 0 -4px 8px rgba(0,0,0,0.2); }
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--text);
 }
 
 .ball.star {
-  background: radial-gradient(circle at 30% 30%, #fff 0%, #ffe066 40%, var(--gold) 100%);
-  border-color: var(--gold-bright);
-  color: #5a3e00;
+  background: var(--star-bg);
+  border-color: var(--star-border);
+  color: var(--star-text);
 }
 
 .ball-separator {
-  font-size: 40px;
-  color: var(--gold);
-  margin: 0 6px;
+  color: var(--text-light);
+  font-size: 16px;
+  margin: 0 4px;
+  font-weight: 400;
 }
 
-/* Carte oracle */
+/* ─── Carte oracle ────────────────────────────────────────── */
+
 .oracle-card {
-  background: linear-gradient(135deg, rgba(42, 8, 82, 0.8), rgba(26, 0, 51, 0.9));
-  border: 2px solid var(--gold);
-  border-radius: 12px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 8px;
   padding: 32px 28px;
-  margin: 24px 0;
-  box-shadow:
-    0 0 40px rgba(212, 175, 55, 0.3),
-    inset 0 0 60px rgba(212, 175, 55, 0.08);
-  position: relative;
+  margin: 20px 0 40px;
 }
 
-.oracle-card::before, .oracle-card::after {
-  content: '✦';
-  position: absolute;
-  color: var(--gold);
-  font-size: 20px;
+.oracle-card::before,
+.oracle-card::after {
+  content: none;  /* plus de ✦ décoratifs */
 }
-.oracle-card::before { top: 8px; left: 12px; }
-.oracle-card::after { bottom: 8px; right: 12px; }
 
 .draw-date {
   text-align: center;
-  font-size: 22px;
-  color: var(--gold-bright);
-  letter-spacing: 3px;
+  font-size: 13px;
+  color: var(--text-muted);
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
+  font-weight: 500;
 }
 
 .draw-countdown {
   text-align: center;
+  color: var(--text-light);
+  font-size: 14px;
+  margin-bottom: 8px;
   font-style: italic;
-  color: var(--cream);
-  opacity: 0.75;
-  margin-bottom: 16px;
 }
+
+/* ─── Prophétie (ton littéraire) ─────────────────────────── */
 
 .prophecy {
+  font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
   font-style: italic;
   font-size: 18px;
-  line-height: 1.8;
+  line-height: 1.6;
   text-align: center;
-  color: var(--cream);
-  padding: 20px 24px;
-  margin: 16px 0;
-  border-left: 3px solid var(--gold);
-  border-right: 3px solid var(--gold);
-  background: rgba(0,0,0,0.3);
+  color: var(--text);
+  padding: 24px 12px;
+  margin: 20px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: transparent;
 }
 
-.prophecy::before { content: '« '; color: var(--gold); font-size: 24px; }
-.prophecy::after { content: ' »'; color: var(--gold); font-size: 24px; }
+.prophecy::before { content: '« '; color: var(--text-light); }
+.prophecy::after { content: ' »'; color: var(--text-light); }
+
+/* ─── Analyse (liste détaillée) ──────────────────────────── */
 
 .reasoning {
-  margin-top: 20px;
-  padding: 18px;
-  background: rgba(0,0,0,0.4);
-  border-radius: 8px;
-  font-family: sans-serif;
-  font-size: 13px;
-  line-height: 1.7;
+  margin-top: 24px;
+  padding: 20px 24px;
+  background: var(--bg-subtle);
+  border-radius: 6px;
+  font-size: 13.5px;
+  line-height: 1.65;
 }
 
 .reasoning-label {
-  color: var(--gold);
-  letter-spacing: 2px;
+  color: var(--text-muted);
+  letter-spacing: 1.2px;
   text-transform: uppercase;
   font-size: 11px;
   margin-bottom: 10px;
@@ -309,73 +283,83 @@ nav a:hover, nav a.active {
   list-style: none;
   padding-left: 0;
 }
+
 .reasoning li {
-  padding: 4px 0 4px 24px;
+  padding: 3px 0 3px 16px;
   position: relative;
-  color: var(--cream);
-  opacity: 0.9;
-}
-.reasoning li::before {
-  content: '✧';
-  position: absolute;
-  left: 0;
-  color: var(--gold);
+  color: var(--text);
 }
 
-/* Confidence meter (tout aussi bidon) */
+.reasoning li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  color: var(--text-light);
+}
+
+/* ─── Confiance ──────────────────────────────────────────── */
+
 .confidence {
   text-align: center;
-  margin: 14px 0;
-  font-family: sans-serif;
-  font-size: 13px;
-  letter-spacing: 2px;
-  color: var(--gold);
+  margin: 16px 0 8px;
+  font-size: 11px;
+  letter-spacing: 1.2px;
+  color: var(--text-muted);
   text-transform: uppercase;
+  font-weight: 500;
 }
 
 .confidence-bar {
-  width: 200px;
-  height: 8px;
-  background: rgba(0,0,0,0.5);
-  border: 1px solid var(--gold-dark);
-  border-radius: 4px;
-  margin: 8px auto;
+  width: 180px;
+  height: 4px;
+  background: var(--border);
+  border-radius: 2px;
+  margin: 6px auto;
   overflow: hidden;
 }
+
 .confidence-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--gold-dark), var(--gold-bright));
-  box-shadow: 0 0 8px var(--gold);
+  background: var(--accent);
 }
 
-/* Calendrier vue liste */
+/* ─── Calendrier liste ───────────────────────────────────── */
+
 .calendar-list {
-  display: grid;
-  gap: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--border);
 }
 
 .calendar-item {
-  background: rgba(42, 8, 82, 0.5);
-  border: 1px solid var(--gold-dark);
-  border-radius: 8px;
-  padding: 16px 20px;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  border-radius: 0;
+  padding: 14px 4px;
   display: flex;
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
-  transition: all 0.3s;
+  transition: background 0.15s;
 }
 
 .calendar-item:hover {
-  border-color: var(--gold);
-  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+  background: var(--bg-subtle);
+  box-shadow: none;
 }
 
 .calendar-item .cal-date {
-  font-size: 16px;
-  color: var(--gold-bright);
-  min-width: 130px;
-  font-family: sans-serif;
+  font-size: 14px;
+  color: var(--text);
+  min-width: 180px;
+  font-weight: 500;
+}
+
+.calendar-item .cal-date span {
+  color: var(--text-light);
+  font-weight: 400;
 }
 
 .calendar-item .cal-balls {
@@ -387,106 +371,133 @@ nav a:hover, nav a.active {
 }
 
 .mini-ball {
-  width: 36px;
-  height: 36px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, #fff, #e8d9a8);
-  border: 2px solid var(--gold);
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  color: var(--purple-deep);
-  font-size: 14px;
+  font-family: 'Source Serif 4', Georgia, serif;
+  font-weight: 600;
+  color: var(--text);
+  font-size: 13px;
 }
 
 .mini-ball.star {
-  background: radial-gradient(circle at 30% 30%, #fff, var(--gold));
-  color: #5a3e00;
+  background: var(--star-bg);
+  border-color: var(--star-border);
+  color: var(--star-text);
 }
 
 .mini-separator {
-  color: var(--gold);
-  margin: 0 2px;
+  color: var(--text-light);
+  margin: 0 3px;
+  font-size: 12px;
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 40px 20px;
-  color: var(--cream);
-  opacity: 0.7;
-  font-size: 13px;
-  font-family: sans-serif;
+/* ─── Filtres ────────────────────────────────────────────── */
+
+.filter-bar {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 24px 0 20px;
 }
 
-footer a { color: var(--gold); }
+.filter-bar input,
+.filter-bar select {
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-strong);
+  color: var(--text);
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: inherit;
+  min-width: 160px;
+}
 
-/* About page */
+.filter-bar input:focus,
+.filter-bar select:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-subtle);
+}
+
+/* ─── Page « about » ────────────────────────────────────── */
+
 .about-section {
-  background: rgba(42, 8, 82, 0.4);
-  border-left: 4px solid var(--gold);
-  padding: 20px 24px;
-  margin: 24px 0;
-  border-radius: 4px;
+  background: transparent;
+  border-left: 3px solid var(--accent);
+  padding: 4px 24px;
+  margin: 32px 0;
+  border-radius: 0;
+}
+
+.about-section h3 {
+  margin-top: 4px;
 }
 
 .big-quote {
-  font-size: 22px;
+  font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
+  font-size: 20px;
   font-style: italic;
   text-align: center;
-  padding: 20px;
-  color: var(--gold);
-  border-top: 2px solid var(--gold-dark);
-  border-bottom: 2px solid var(--gold-dark);
-  margin: 30px 0;
+  padding: 32px 20px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  margin: 40px 0;
+  line-height: 1.5;
 }
 
 .stat-box {
-  background: rgba(0,0,0,0.4);
-  border: 1px solid var(--gold-dark);
-  padding: 20px;
-  border-radius: 8px;
-  margin: 20px 0;
-  font-family: sans-serif;
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin: 16px 0;
+  font-size: 14px;
+  line-height: 1.7;
 }
 
 .stat-box code {
-  color: var(--gold-bright);
-  background: rgba(0,0,0,0.5);
-  padding: 2px 8px;
+  color: var(--accent);
+  background: var(--bg-elevated);
+  padding: 1px 6px;
   border-radius: 3px;
+  font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
+  font-size: 13px;
+  border: 1px solid var(--border);
 }
 
-/* Filters for calendar */
-.filter-bar {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  justify-content: center;
-  margin: 20px 0;
-  font-family: sans-serif;
+/* ─── Footer ─────────────────────────────────────────────── */
+
+footer {
+  max-width: 780px;
+  margin: 64px auto 0;
+  padding: 32px 24px 24px;
+  border-top: 1px solid var(--border);
+  color: var(--text-muted);
+  font-size: 13px;
+  line-height: 1.6;
+  text-align: center;
 }
 
-.filter-bar input, .filter-bar select {
-  background: rgba(0,0,0,0.4);
-  border: 1px solid var(--gold-dark);
-  color: var(--cream);
-  padding: 8px 12px;
-  border-radius: 4px;
-  font-size: 14px;
-}
+footer p { margin-bottom: 10px; }
 
-.filter-bar input:focus, .filter-bar select:focus {
-  outline: none;
-  border-color: var(--gold);
-}
+/* ─── Responsive ─────────────────────────────────────────── */
 
-/* Responsive */
 @media (max-width: 600px) {
-  .ball { width: 52px; height: 52px; font-size: 22px; border-width: 2px; }
+  main { padding: 32px 16px 16px; }
+  h1 { font-size: 28px; }
+  h2 { font-size: 20px; margin: 32px 0 12px; }
+  .ball { width: 44px; height: 44px; font-size: 18px; }
   .oracle-card { padding: 20px 16px; }
-  .prophecy { font-size: 16px; padding: 14px; }
-  nav a { margin: 0 8px; font-size: 12px; }
-  main { padding: 20px 12px; }
+  .prophecy { font-size: 16px; padding: 18px 8px; }
+  nav a { padding: 10px 12px; font-size: 13px; }
+  .calendar-item .cal-date { min-width: 100%; }
+  .filter-bar input, .filter-bar select { min-width: 0; flex: 1; }
 }
