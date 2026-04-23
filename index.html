@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>L'Oracle des Nombres — Parodie numérologique EuroMillions</title>
+<link rel="stylesheet" href="style.css">
+<meta property="og:title" content="L'Oracle des Nombres (parodie)">
+<meta property="og:description" content="Prédictions pseudo-scientifiques d'EuroMillions par cycles lunaires et alignements planétaires. C'est une blague — aucune valeur prédictive.">
+</head>
+<body>
+
+<div class="parody-tag">⚠ Parodie — Satire — Aucune valeur prédictive ⚠</div>
+
+<div class="danger-banner">
+  Jouer comporte des risques : endettement, isolement, dépendance. Pour être aidé :
+  <a href="tel:0974751313">09 74 75 13 13</a> (appel non surtaxé) —
+  <a href="https://www.joueurs-info-service.fr/" target="_blank" rel="noopener">joueurs-info-service.fr</a>
+</div>
+
+<main>
+  <h1><span class="ornament">✦</span>L'Oracle<span class="ornament">·</span>des Nombres<span class="ornament">✦</span></h1>
+  <p class="subtitle">Vaticinations numérologiques pour les tirages EuroMillions</p>
+
+  <nav>
+    <a href="index.html" class="active">Prochain tirage</a>
+    <a href="calendar.html">Tous les tirages</a>
+    <a href="about.html">Pourquoi c'est nul</a>
+  </nav>
+
+  <section id="next-draw">
+    <h2>La Révélation du Jour</h2>
+    <div id="oracle-content"></div>
+  </section>
+
+  <section>
+    <h2>Les Deux Prochains Tirages</h2>
+    <div id="upcoming"></div>
+  </section>
+
+  <div class="big-quote">
+    « Les nombres ne mentent pas.<br>Ce sont les oracles qui mentent. »<br>
+    <span style="font-size:14px; opacity:0.7;">— Proverbe inventé à l'instant</span>
+  </div>
+
+</main>
+
+<footer>
+  <p>
+    <b>L'Oracle des Nombres</b> est une œuvre de satire.
+    Les prédictions sont générées algorithmiquement à partir de la date du tirage
+    via un générateur de nombres pseudo-aléatoires seedé, habillé de vocabulaire ésotérique.
+  </p>
+  <p>
+    Les tirages EuroMillions sont <b>indépendants et uniformément aléatoires</b>.
+    Aucune phase lunaire, aucun signe astral, aucun biorythme n'a d'effet mesurable
+    sur leur issue.
+    <a href="about.html">En savoir plus →</a>
+  </p>
+  <p style="margin-top:20px">
+    Code source sur <a href="https://github.com/raphaeljameson-png/oracle-des-nombres" target="_blank" rel="noopener">GitHub</a> — Licence MIT
+  </p>
+</footer>
+
+<script src="calendar.js"></script>
+<script src="app.js"></script>
+<script>
+(function() {
+  const draws = window.CALENDAR_DATA.draws;
+  const next = nextDraw(draws);
+  const result = oracle(next);
+
+  // Rendu de la prédiction principale
+  document.getElementById('oracle-content').innerHTML = `
+    <div class="oracle-card">
+      <div class="draw-date">${result.dateFormatted}</div>
+      <div class="draw-countdown">${countdownText(next)}</div>
+
+      <div class="prediction-grid">
+        ${renderBalls(result.mainNumbers, result.stars)}
+      </div>
+
+      <div class="confidence">
+        Confiance de l'oracle
+        <div class="confidence-bar">
+          <div class="confidence-fill" style="width:${result.confidence}%"></div>
+        </div>
+        ${result.confidence}%
+      </div>
+
+      <div class="prophecy">${result.prophecy}</div>
+
+      <div class="reasoning">
+        <span class="reasoning-label">Analyse multidimensionnelle</span>
+        <ul>
+          ${result.reasoning.map(r => `<li>${r}</li>`).join('')}
+        </ul>
+      </div>
+    </div>
+  `;
+
+  // Les 2 prochains après celui-ci
+  const idx = draws.indexOf(next);
+  const upcoming = draws.slice(idx + 1, idx + 3);
+  document.getElementById('upcoming').innerHTML = upcoming.map(d => {
+    const r = oracle(d);
+    return `
+      <div class="calendar-item">
+        <div class="cal-date">${r.dateFormatted}</div>
+        <div class="cal-balls">${renderBalls(r.mainNumbers, r.stars, true)}</div>
+      </div>
+    `;
+  }).join('');
+})();
+</script>
+
+</body>
+</html>
