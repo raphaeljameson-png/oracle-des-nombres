@@ -5,11 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Calendrier oraculaire — 2 ans de prédictions EuroMillions</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="parody-tag">⚠ Parodie — Satire — Aucune valeur prédictive ⚠</div>
+<div class="parody-tag">Parodie — Satire — Aucune valeur prédictive</div>
 
 <div class="danger-banner">
   Jouer comporte des risques : endettement, isolement, dépendance. Pour être aidé :
@@ -17,7 +20,7 @@
 </div>
 
 <main>
-  <h1><span class="ornament">✦</span>Calendrier<span class="ornament">·</span>Oraculaire<span class="ornament">✦</span></h1>
+  <h1>Calendrier oraculaire</h1>
   <p class="subtitle">Les vaticinations des 2 prochaines années, d'un seul tenant</p>
 
   <nav>
@@ -27,7 +30,7 @@
   </nav>
 
   <div class="filter-bar">
-    <input type="search" id="search" placeholder="🔍 Chercher un nombre ou une date...">
+    <input type="search" id="search" placeholder="Chercher un nombre ou une date…">
     <select id="zodiac-filter">
       <option value="">Tous les signes</option>
       <option value="Capricorne">♑ Capricorne</option>
@@ -56,7 +59,7 @@
     </select>
   </div>
 
-  <div id="count-info" style="text-align:center; opacity:0.7; font-family:sans-serif; font-size:13px; margin:10px 0;"></div>
+  <div id="count-info" style="text-align:center; color:#8a877f; font-size:13px; margin:10px 0;"></div>
 
   <div class="calendar-list" id="calendar-list"></div>
 
@@ -68,7 +71,7 @@
     à partir de la date de chaque tirage.
     Elles n'ont pas plus de valeur prédictive qu'un jet de dés.
   </p>
-  <p><a href="about.html">Pourquoi c'est nul →</a></p>
+  <p><a href="about.html">Pourquoi c'est nul</a></p>
 </footer>
 
 <script src="calendar.js"></script>
@@ -82,7 +85,6 @@
   const zodiacSelect = document.getElementById('zodiac-filter');
   const phaseSelect = document.getElementById('phase-filter');
 
-  // On pré-calcule une seule fois
   const allPredictions = draws.map(d => oracle(d));
 
   function renderFiltered() {
@@ -105,25 +107,22 @@
 
     countInfo.textContent = `${filtered.length} tirage${filtered.length > 1 ? 's' : ''} affiché${filtered.length > 1 ? 's' : ''} sur ${allPredictions.length}`;
 
-    // Rendu
     list.innerHTML = filtered.map(r => `
       <div class="calendar-item">
         <div class="cal-date">
           ${r.dateFormatted}<br>
-          <span style="font-size:12px; opacity:0.7">${r.astro.phaseSym} ${r.astro.zodiac.sym}</span>
+          <span>${r.astro.phaseSym} ${r.astro.zodiac.sym} ${r.astro.zodiac.name}</span>
         </div>
         <div class="cal-balls">${renderBalls(r.mainNumbers, r.stars, true)}</div>
       </div>
     `).join('');
   }
 
-  // Initial render
   renderFiltered();
   searchInput.addEventListener('input', renderFiltered);
   zodiacSelect.addEventListener('change', renderFiltered);
   phaseSelect.addEventListener('change', renderFiltered);
 
-  // Remplacer {{COUNT}} dans le footer
   document.querySelector('footer p').innerHTML =
     document.querySelector('footer p').innerHTML.replace('{{COUNT}}', draws.length);
 })();
