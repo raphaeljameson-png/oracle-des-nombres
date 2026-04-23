@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Calendrier oraculaire — 2 ans de prédictions EuroMillions</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="parody-tag">⚠ Parodie — Satire — Aucune valeur prédictive ⚠</div>
+
+<div class="danger-banner">
+  Jouer comporte des risques : endettement, isolement, dépendance. Pour être aidé :
+  <a href="tel:0974751313">09 74 75 13 13</a> (appel non surtaxé)
+</div>
+
+<main>
+  <h1><span class="ornament">✦</span>Calendrier<span class="ornament">·</span>Oraculaire<span class="ornament">✦</span></h1>
+  <p class="subtitle">Les vaticinations des 2 prochaines années, d'un seul tenant</p>
+
+  <nav>
+    <a href="index.html">Prochain tirage</a>
+    <a href="calendar.html" class="active">Tous les tirages</a>
+    <a href="about.html">Pourquoi c'est nul</a>
+  </nav>
+
+  <div class="filter-bar">
+    <input type="search" id="search" placeholder="🔍 Chercher un nombre ou une date...">
+    <select id="zodiac-filter">
+      <option value="">Tous les signes</option>
+      <option value="Capricorne">♑ Capricorne</option>
+      <option value="Verseau">♒ Verseau</option>
+      <option value="Poissons">♓ Poissons</option>
+      <option value="Bélier">♈ Bélier</option>
+      <option value="Taureau">♉ Taureau</option>
+      <option value="Gémeaux">♊ Gémeaux</option>
+      <option value="Cancer">♋ Cancer</option>
+      <option value="Lion">♌ Lion</option>
+      <option value="Vierge">♍ Vierge</option>
+      <option value="Balance">♎ Balance</option>
+      <option value="Scorpion">♏ Scorpion</option>
+      <option value="Sagittaire">♐ Sagittaire</option>
+    </select>
+    <select id="phase-filter">
+      <option value="">Toutes les phases lunaires</option>
+      <option value="Nouvelle Lune">🌑 Nouvelle Lune</option>
+      <option value="Premier Croissant">🌒 Premier Croissant</option>
+      <option value="Premier Quartier">🌓 Premier Quartier</option>
+      <option value="Gibbeuse Croissante">🌔 Gibbeuse Croissante</option>
+      <option value="Pleine Lune">🌕 Pleine Lune</option>
+      <option value="Gibbeuse Décroissante">🌖 Gibbeuse Décroissante</option>
+      <option value="Dernier Quartier">🌗 Dernier Quartier</option>
+      <option value="Dernier Croissant">🌘 Dernier Croissant</option>
+    </select>
+  </div>
+
+  <div id="count-info" style="text-align:center; opacity:0.7; font-family:sans-serif; font-size:13px; margin:10px 0;"></div>
+
+  <div class="calendar-list" id="calendar-list"></div>
+
+</main>
+
+<footer>
+  <p>
+    Les {{COUNT}} prédictions ci-dessus ont été générées de façon purement algorithmique
+    à partir de la date de chaque tirage.
+    Elles n'ont pas plus de valeur prédictive qu'un jet de dés.
+  </p>
+  <p><a href="about.html">Pourquoi c'est nul →</a></p>
+</footer>
+
+<script src="calendar.js"></script>
+<script src="app.js"></script>
+<script>
+(function() {
+  const draws = window.CALENDAR_DATA.draws;
+  const list = document.getElementById('calendar-list');
+  const countInfo = document.getElementById('count-info');
+  const searchInput = document.getElementById('search');
+  const zodiacSelect = document.getElementById('zodiac-filter');
+  const phaseSelect = document.getElementById('phase-filter');
+
+  // On pré-calcule une seule fois
+  const allPredictions = draws.map(d => oracle(d));
+
+  function renderFiltered() {
+    const query = searchInput.value.trim().toLowerCase();
+    const zodiac = zodiacSelect.value;
+    const phase = phaseSelect.value;
+
+    const filtered = allPredictions.filter(r => {
+      if (zodiac && r.astro.zodiac.name !== zodiac) return false;
+      if (phase && r.astro.phaseName !== phase) return false;
+      if (query) {
+        const haystack = (
+          r.date + ' ' + r.dateFormatted + ' ' +
+          r.mainNumbers.join(' ') + ' ' + r.stars.join(' ')
+        ).toLowerCase();
+        if (!haystack.includes(query)) return false;
+      }
+      return true;
+    });
+
+    countInfo.textContent = `${filtered.length} tirage${filtered.length > 1 ? 's' : ''} affiché${filtered.length > 1 ? 's' : ''} sur ${allPredictions.length}`;
+
+    // Rendu
+    list.innerHTML = filtered.map(r => `
+      <div class="calendar-item">
+        <div class="cal-date">
+          ${r.dateFormatted}<br>
+          <span style="font-size:12px; opacity:0.7">${r.astro.phaseSym} ${r.astro.zodiac.sym}</span>
+        </div>
+        <div class="cal-balls">${renderBalls(r.mainNumbers, r.stars, true)}</div>
+      </div>
+    `).join('');
+  }
+
+  // Initial render
+  renderFiltered();
+  searchInput.addEventListener('input', renderFiltered);
+  zodiacSelect.addEventListener('change', renderFiltered);
+  phaseSelect.addEventListener('change', renderFiltered);
+
+  // Remplacer {{COUNT}} dans le footer
+  document.querySelector('footer p').innerHTML =
+    document.querySelector('footer p').innerHTML.replace('{{COUNT}}', draws.length);
+})();
+</script>
+
+</body>
+</html>
