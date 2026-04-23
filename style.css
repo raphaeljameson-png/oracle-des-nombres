@@ -1,0 +1,492 @@
+/* ═══════════════════════════════════════════════════════════════
+   ORACLE DES NOMBRES - Styles flamboyants
+   ═══════════════════════════════════════════════════════════════ */
+
+:root {
+  --gold: #d4af37;
+  --gold-bright: #ffd700;
+  --gold-dark: #9a7b1e;
+  --purple: #1a0033;
+  --purple-deep: #0a0015;
+  --purple-mid: #2a0852;
+  --cream: #f5e6c8;
+  --red-danger: #c8102e;
+  --star-glow: rgba(255, 215, 0, 0.6);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html {
+  font-family: 'Cormorant Garamond', 'Georgia', 'Times New Roman', serif;
+  background: var(--purple-deep);
+  color: var(--cream);
+  min-height: 100vh;
+}
+
+body {
+  background:
+    radial-gradient(ellipse at top, var(--purple-mid) 0%, var(--purple) 40%, var(--purple-deep) 100%),
+    var(--purple-deep);
+  background-attachment: fixed;
+  min-height: 100vh;
+  padding-bottom: 60px;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Étoiles scintillantes en fond */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, white, transparent),
+    radial-gradient(1px 1px at 60% 70%, white, transparent),
+    radial-gradient(1px 1px at 80% 10%, white, transparent),
+    radial-gradient(2px 2px at 15% 80%, var(--gold), transparent),
+    radial-gradient(1px 1px at 90% 50%, white, transparent),
+    radial-gradient(1px 1px at 40% 20%, white, transparent),
+    radial-gradient(1.5px 1.5px at 70% 40%, var(--gold-bright), transparent),
+    radial-gradient(1px 1px at 10% 60%, white, transparent),
+    radial-gradient(1px 1px at 95% 85%, white, transparent);
+  background-size: 100vw 100vh;
+  opacity: 0.6;
+  pointer-events: none;
+  z-index: 0;
+  animation: twinkle 4s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+  0% { opacity: 0.4; }
+  100% { opacity: 0.8; }
+}
+
+/* Bandeau anti-jeu omniprésent */
+.danger-banner {
+  background: var(--red-danger);
+  color: white;
+  text-align: center;
+  padding: 10px 16px;
+  font-family: sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  position: relative;
+  z-index: 10;
+  border-bottom: 2px solid rgba(0,0,0,0.3);
+}
+
+.danger-banner a {
+  color: white;
+  text-decoration: underline;
+}
+
+/* Disclaimer parodie permanent */
+.parody-tag {
+  background: rgba(0,0,0,0.4);
+  color: var(--gold);
+  text-align: center;
+  padding: 8px;
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-family: sans-serif;
+  font-weight: 600;
+  border-bottom: 1px solid var(--gold-dark);
+  position: relative;
+  z-index: 10;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  position: relative;
+  z-index: 1;
+}
+
+h1 {
+  font-size: clamp(36px, 7vw, 68px);
+  text-align: center;
+  color: var(--gold);
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  text-shadow:
+    0 0 20px var(--gold),
+    0 0 40px rgba(212, 175, 55, 0.5);
+  margin-bottom: 8px;
+  line-height: 1.1;
+  font-weight: 400;
+}
+
+h1 .ornament {
+  color: var(--gold-dark);
+  margin: 0 16px;
+  font-size: 0.7em;
+}
+
+.subtitle {
+  text-align: center;
+  color: var(--cream);
+  font-style: italic;
+  font-size: 18px;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+  opacity: 0.85;
+}
+
+h2 {
+  font-size: clamp(24px, 4vw, 38px);
+  color: var(--gold);
+  text-align: center;
+  letter-spacing: 3px;
+  margin: 40px 0 20px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+h3 {
+  color: var(--gold-bright);
+  font-size: 22px;
+  margin: 24px 0 12px;
+  font-style: italic;
+}
+
+p {
+  font-size: 17px;
+  line-height: 1.7;
+  margin-bottom: 16px;
+}
+
+a { color: var(--gold-bright); }
+
+/* Navigation */
+nav {
+  text-align: center;
+  margin-bottom: 30px;
+  padding: 14px;
+  border-top: 1px solid var(--gold-dark);
+  border-bottom: 1px solid var(--gold-dark);
+}
+
+nav a {
+  margin: 0 18px;
+  color: var(--cream);
+  text-decoration: none;
+  font-family: sans-serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  transition: color 0.3s;
+}
+
+nav a:hover, nav a.active {
+  color: var(--gold-bright);
+  text-shadow: 0 0 10px var(--gold);
+}
+
+/* Grille de boules */
+.prediction-grid {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  margin: 32px 0;
+}
+
+.ball {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff 0%, #f5f5dc 40%, #e8d9a8 100%);
+  border: 3px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Georgia', serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--purple-deep);
+  box-shadow:
+    0 0 20px var(--star-glow),
+    inset 0 -4px 8px rgba(0,0,0,0.2);
+  animation: ball-glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes ball-glow {
+  0% { box-shadow: 0 0 15px var(--star-glow), inset 0 -4px 8px rgba(0,0,0,0.2); }
+  100% { box-shadow: 0 0 30px var(--gold), inset 0 -4px 8px rgba(0,0,0,0.2); }
+}
+
+.ball.star {
+  background: radial-gradient(circle at 30% 30%, #fff 0%, #ffe066 40%, var(--gold) 100%);
+  border-color: var(--gold-bright);
+  color: #5a3e00;
+}
+
+.ball-separator {
+  font-size: 40px;
+  color: var(--gold);
+  margin: 0 6px;
+}
+
+/* Carte oracle */
+.oracle-card {
+  background: linear-gradient(135deg, rgba(42, 8, 82, 0.8), rgba(26, 0, 51, 0.9));
+  border: 2px solid var(--gold);
+  border-radius: 12px;
+  padding: 32px 28px;
+  margin: 24px 0;
+  box-shadow:
+    0 0 40px rgba(212, 175, 55, 0.3),
+    inset 0 0 60px rgba(212, 175, 55, 0.08);
+  position: relative;
+}
+
+.oracle-card::before, .oracle-card::after {
+  content: '✦';
+  position: absolute;
+  color: var(--gold);
+  font-size: 20px;
+}
+.oracle-card::before { top: 8px; left: 12px; }
+.oracle-card::after { bottom: 8px; right: 12px; }
+
+.draw-date {
+  text-align: center;
+  font-size: 22px;
+  color: var(--gold-bright);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.draw-countdown {
+  text-align: center;
+  font-style: italic;
+  color: var(--cream);
+  opacity: 0.75;
+  margin-bottom: 16px;
+}
+
+.prophecy {
+  font-style: italic;
+  font-size: 18px;
+  line-height: 1.8;
+  text-align: center;
+  color: var(--cream);
+  padding: 20px 24px;
+  margin: 16px 0;
+  border-left: 3px solid var(--gold);
+  border-right: 3px solid var(--gold);
+  background: rgba(0,0,0,0.3);
+}
+
+.prophecy::before { content: '« '; color: var(--gold); font-size: 24px; }
+.prophecy::after { content: ' »'; color: var(--gold); font-size: 24px; }
+
+.reasoning {
+  margin-top: 20px;
+  padding: 18px;
+  background: rgba(0,0,0,0.4);
+  border-radius: 8px;
+  font-family: sans-serif;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+.reasoning-label {
+  color: var(--gold);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  font-size: 11px;
+  margin-bottom: 10px;
+  display: block;
+  font-weight: 600;
+}
+
+.reasoning ul {
+  list-style: none;
+  padding-left: 0;
+}
+.reasoning li {
+  padding: 4px 0 4px 24px;
+  position: relative;
+  color: var(--cream);
+  opacity: 0.9;
+}
+.reasoning li::before {
+  content: '✧';
+  position: absolute;
+  left: 0;
+  color: var(--gold);
+}
+
+/* Confidence meter (tout aussi bidon) */
+.confidence {
+  text-align: center;
+  margin: 14px 0;
+  font-family: sans-serif;
+  font-size: 13px;
+  letter-spacing: 2px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.confidence-bar {
+  width: 200px;
+  height: 8px;
+  background: rgba(0,0,0,0.5);
+  border: 1px solid var(--gold-dark);
+  border-radius: 4px;
+  margin: 8px auto;
+  overflow: hidden;
+}
+.confidence-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold-dark), var(--gold-bright));
+  box-shadow: 0 0 8px var(--gold);
+}
+
+/* Calendrier vue liste */
+.calendar-list {
+  display: grid;
+  gap: 14px;
+}
+
+.calendar-item {
+  background: rgba(42, 8, 82, 0.5);
+  border: 1px solid var(--gold-dark);
+  border-radius: 8px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  transition: all 0.3s;
+}
+
+.calendar-item:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 15px rgba(212, 175, 55, 0.3);
+}
+
+.calendar-item .cal-date {
+  font-size: 16px;
+  color: var(--gold-bright);
+  min-width: 130px;
+  font-family: sans-serif;
+}
+
+.calendar-item .cal-balls {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex: 1;
+  flex-wrap: wrap;
+}
+
+.mini-ball {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff, #e8d9a8);
+  border: 2px solid var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: var(--purple-deep);
+  font-size: 14px;
+}
+
+.mini-ball.star {
+  background: radial-gradient(circle at 30% 30%, #fff, var(--gold));
+  color: #5a3e00;
+}
+
+.mini-separator {
+  color: var(--gold);
+  margin: 0 2px;
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--cream);
+  opacity: 0.7;
+  font-size: 13px;
+  font-family: sans-serif;
+}
+
+footer a { color: var(--gold); }
+
+/* About page */
+.about-section {
+  background: rgba(42, 8, 82, 0.4);
+  border-left: 4px solid var(--gold);
+  padding: 20px 24px;
+  margin: 24px 0;
+  border-radius: 4px;
+}
+
+.big-quote {
+  font-size: 22px;
+  font-style: italic;
+  text-align: center;
+  padding: 20px;
+  color: var(--gold);
+  border-top: 2px solid var(--gold-dark);
+  border-bottom: 2px solid var(--gold-dark);
+  margin: 30px 0;
+}
+
+.stat-box {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid var(--gold-dark);
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px 0;
+  font-family: sans-serif;
+}
+
+.stat-box code {
+  color: var(--gold-bright);
+  background: rgba(0,0,0,0.5);
+  padding: 2px 8px;
+  border-radius: 3px;
+}
+
+/* Filters for calendar */
+.filter-bar {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 20px 0;
+  font-family: sans-serif;
+}
+
+.filter-bar input, .filter-bar select {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid var(--gold-dark);
+  color: var(--cream);
+  padding: 8px 12px;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.filter-bar input:focus, .filter-bar select:focus {
+  outline: none;
+  border-color: var(--gold);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .ball { width: 52px; height: 52px; font-size: 22px; border-width: 2px; }
+  .oracle-card { padding: 20px 16px; }
+  .prophecy { font-size: 16px; padding: 14px; }
+  nav a { margin: 0 8px; font-size: 12px; }
+  main { padding: 20px 12px; }
+}
