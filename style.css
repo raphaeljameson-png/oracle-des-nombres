@@ -1,33 +1,42 @@
 /* ═══════════════════════════════════════════════════════════════
-   ORACLE DES NOMBRES — Design éditorial sobre
-   Palette neutre + un seul accent bleu ardoise.
+   ORACLE DES NOMBRES — Design éditorial, fond nuit
+   Bleu ardoise profond + accent terracotta + ivoire pour les boules.
    ═══════════════════════════════════════════════════════════════ */
 
 :root {
-  /* Base neutre */
-  --bg: #fafaf7;
-  --bg-elevated: #ffffff;
-  --bg-subtle: #f2f1ec;
-  --border: #e5e3dc;
-  --border-strong: #d4d1c7;
+  /* Base (fond nuit) */
+  --bg: #0f1419;
+  --bg-elevated: #1a2028;
+  --bg-subtle: #141a21;
+  --border: #2a3340;
+  --border-strong: #3a4554;
 
   /* Texte */
-  --text: #1a1a1a;
-  --text-muted: #5c5a54;
-  --text-light: #8a877f;
+  --text: #e8e4dc;
+  --text-muted: #a8a196;
+  --text-light: #6e6a62;
 
-  /* Accent unique (bleu ardoise) */
-  --accent: #2c5f7c;
-  --accent-hover: #204862;
-  --accent-subtle: #eaf0f4;
+  /* Accent (terracotta chaud, utilisé avec parcimonie) */
+  --accent: #e07856;
+  --accent-hover: #f08866;
+  --accent-subtle: rgba(224, 120, 86, 0.12);
 
-  /* Étoiles EuroMillions (jaune doux, pas clinquant) */
-  --star-bg: #faf3d8;
+  /* Boules (ivoire sur fond nuit) */
+  --ball-bg: #f4ede0;
+  --ball-text: #1a1612;
+
+  /* Étoiles EuroMillions (or vieilli) */
+  --star-bg: #3a2f1a;
   --star-border: #c9a227;
-  --star-text: #6b4e00;
+  --star-text: #f4d470;
 
   /* Alerte jeu */
-  --danger: #b3261e;
+  --danger: #d85444;
+  --danger-bg: rgba(216, 84, 68, 0.08);
+
+  /* Parodie tag */
+  --parody-bg: rgba(224, 120, 86, 0.08);
+  --parody-text: var(--accent);
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -50,25 +59,25 @@ body {
 /* ─── Bandeaux (haut de page) ─────────────────────────────── */
 
 .parody-tag {
-  background: var(--bg-subtle);
-  color: var(--text-muted);
+  background: var(--parody-bg);
+  color: var(--parody-text);
   text-align: center;
-  padding: 7px 16px;
-  font-size: 12px;
-  letter-spacing: 1.2px;
-  font-weight: 500;
+  padding: 8px 16px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  font-weight: 600;
   border-bottom: 1px solid var(--border);
   text-transform: uppercase;
 }
 
 .danger-banner {
-  background: #fdf5f4;
+  background: var(--danger-bg);
   color: var(--danger);
   text-align: center;
   padding: 10px 16px;
   font-size: 13px;
   font-weight: 500;
-  border-bottom: 1px solid #f0d4d1;
+  border-bottom: 1px solid var(--border);
 }
 .danger-banner a { color: var(--danger); text-decoration: underline; }
 
@@ -84,17 +93,17 @@ main {
 
 h1 {
   font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
-  font-size: clamp(32px, 5.5vw, 48px);
+  font-size: clamp(32px, 5.5vw, 52px);
   font-weight: 600;
   color: var(--text);
   text-align: center;
   letter-spacing: -0.02em;
-  line-height: 1.15;
-  margin-bottom: 8px;
+  line-height: 1.1;
+  margin-bottom: 10px;
 }
 
 h1 .ornament {
-  display: none;  /* on enlève les ornements dorés */
+  display: none;
 }
 
 .subtitle {
@@ -103,11 +112,12 @@ h1 .ornament {
   font-size: 16px;
   margin-bottom: 40px;
   font-weight: 400;
+  font-style: italic;
 }
 
 h2 {
   font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
-  font-size: 24px;
+  font-size: 26px;
   font-weight: 600;
   color: var(--text);
   margin: 48px 0 16px;
@@ -136,6 +146,8 @@ a {
 }
 a:hover { color: var(--accent-hover); }
 
+b { color: var(--text); font-weight: 600; }
+
 /* ─── Navigation ─────────────────────────────────────────── */
 
 nav {
@@ -147,7 +159,7 @@ nav {
 }
 
 nav a {
-  padding: 12px 20px;
+  padding: 12px 22px;
   color: var(--text-muted);
   text-decoration: none;
   font-size: 14px;
@@ -173,36 +185,37 @@ nav a.active {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   flex-wrap: wrap;
-  margin: 28px 0;
+  margin: 32px 0;
 }
 
 .ball {
-  width: 56px;
-  height: 56px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
-  background: var(--bg-elevated);
-  border: 1.5px solid var(--border-strong);
+  background: var(--ball-bg);
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Source Serif 4', Georgia, serif;
-  font-size: 22px;
+  font-size: 23px;
   font-weight: 600;
-  color: var(--text);
+  color: var(--ball-text);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
 .ball.star {
   background: var(--star-bg);
-  border-color: var(--star-border);
+  border: 1.5px solid var(--star-border);
   color: var(--star-text);
 }
 
 .ball-separator {
-  color: var(--text-light);
-  font-size: 16px;
-  margin: 0 4px;
+  color: var(--accent);
+  font-size: 14px;
+  margin: 0 6px;
   font-weight: 400;
 }
 
@@ -211,24 +224,26 @@ nav a.active {
 .oracle-card {
   background: var(--bg-elevated);
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-top: 3px solid var(--accent);
+  border-radius: 4px;
   padding: 32px 28px;
   margin: 20px 0 40px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.25);
 }
 
 .oracle-card::before,
 .oracle-card::after {
-  content: none;  /* plus de ✦ décoratifs */
+  content: none;
 }
 
 .draw-date {
   text-align: center;
   font-size: 13px;
   color: var(--text-muted);
-  letter-spacing: 1.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 4px;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .draw-countdown {
@@ -239,24 +254,24 @@ nav a.active {
   font-style: italic;
 }
 
-/* ─── Prophétie (ton littéraire) ─────────────────────────── */
+/* ─── Prophétie ──────────────────────────────────────────── */
 
 .prophecy {
   font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
   font-style: italic;
-  font-size: 18px;
+  font-size: 19px;
   line-height: 1.6;
   text-align: center;
   color: var(--text);
-  padding: 24px 12px;
-  margin: 20px 0;
+  padding: 28px 16px;
+  margin: 24px 0;
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
   background: transparent;
 }
 
-.prophecy::before { content: '« '; color: var(--text-light); }
-.prophecy::after { content: ' »'; color: var(--text-light); }
+.prophecy::before { content: '« '; color: var(--accent); font-size: 22px; }
+.prophecy::after { content: ' »'; color: var(--accent); font-size: 22px; }
 
 /* ─── Analyse (liste détaillée) ──────────────────────────── */
 
@@ -264,17 +279,18 @@ nav a.active {
   margin-top: 24px;
   padding: 20px 24px;
   background: var(--bg-subtle);
-  border-radius: 6px;
+  border-radius: 4px;
   font-size: 13.5px;
   line-height: 1.65;
+  border: 1px solid var(--border);
 }
 
 .reasoning-label {
-  color: var(--text-muted);
-  letter-spacing: 1.2px;
+  color: var(--accent);
+  letter-spacing: 1.5px;
   text-transform: uppercase;
   font-size: 11px;
-  margin-bottom: 10px;
+  margin-bottom: 12px;
   display: block;
   font-weight: 600;
 }
@@ -285,36 +301,37 @@ nav a.active {
 }
 
 .reasoning li {
-  padding: 3px 0 3px 16px;
+  padding: 4px 0 4px 18px;
   position: relative;
-  color: var(--text);
+  color: var(--text-muted);
 }
 
 .reasoning li::before {
-  content: '—';
+  content: '›';
   position: absolute;
   left: 0;
-  color: var(--text-light);
+  color: var(--accent);
+  font-weight: 700;
 }
 
 /* ─── Confiance ──────────────────────────────────────────── */
 
 .confidence {
   text-align: center;
-  margin: 16px 0 8px;
+  margin: 18px 0 8px;
   font-size: 11px;
-  letter-spacing: 1.2px;
+  letter-spacing: 1.5px;
   color: var(--text-muted);
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .confidence-bar {
   width: 180px;
-  height: 4px;
+  height: 3px;
   background: var(--border);
   border-radius: 2px;
-  margin: 6px auto;
+  margin: 8px auto;
   overflow: hidden;
 }
 
@@ -337,29 +354,31 @@ nav a.active {
   border: none;
   border-bottom: 1px solid var(--border);
   border-radius: 0;
-  padding: 14px 4px;
+  padding: 16px 8px;
   display: flex;
   align-items: center;
   gap: 20px;
   flex-wrap: wrap;
-  transition: background 0.15s;
+  transition: background 0.15s, padding-left 0.15s;
 }
 
 .calendar-item:hover {
-  background: var(--bg-subtle);
-  box-shadow: none;
+  background: var(--bg-elevated);
+  padding-left: 16px;
+  box-shadow: inset 3px 0 0 var(--accent);
 }
 
 .calendar-item .cal-date {
   font-size: 14px;
   color: var(--text);
-  min-width: 180px;
+  min-width: 200px;
   font-weight: 500;
 }
 
 .calendar-item .cal-date span {
   color: var(--text-light);
   font-weight: 400;
+  font-size: 12px;
 }
 
 .calendar-item .cal-balls {
@@ -371,30 +390,31 @@ nav a.active {
 }
 
 .mini-ball {
-  width: 30px;
-  height: 30px;
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
-  background: var(--bg-elevated);
-  border: 1px solid var(--border-strong);
+  background: var(--ball-bg);
+  border: none;
   display: flex;
   align-items: center;
   justify-content: center;
   font-family: 'Source Serif 4', Georgia, serif;
   font-weight: 600;
-  color: var(--text);
-  font-size: 13px;
+  color: var(--ball-text);
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.3);
 }
 
 .mini-ball.star {
   background: var(--star-bg);
-  border-color: var(--star-border);
+  border: 1px solid var(--star-border);
   color: var(--star-text);
 }
 
 .mini-separator {
-  color: var(--text-light);
+  color: var(--accent);
   margin: 0 3px;
-  font-size: 12px;
+  font-size: 11px;
 }
 
 /* ─── Filtres ────────────────────────────────────────────── */
@@ -412,12 +432,14 @@ nav a.active {
   background: var(--bg-elevated);
   border: 1px solid var(--border-strong);
   color: var(--text);
-  padding: 8px 12px;
-  border-radius: 5px;
+  padding: 9px 12px;
+  border-radius: 4px;
   font-size: 14px;
   font-family: inherit;
   min-width: 160px;
 }
+
+.filter-bar input::placeholder { color: var(--text-light); }
 
 .filter-bar input:focus,
 .filter-bar select:focus {
@@ -438,14 +460,15 @@ nav a.active {
 
 .about-section h3 {
   margin-top: 4px;
+  color: var(--text);
 }
 
 .big-quote {
   font-family: 'Source Serif 4', 'Source Serif Pro', Georgia, serif;
-  font-size: 20px;
+  font-size: 22px;
   font-style: italic;
   text-align: center;
-  padding: 32px 20px;
+  padding: 36px 20px;
   color: var(--text-muted);
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
@@ -454,19 +477,19 @@ nav a.active {
 }
 
 .stat-box {
-  background: var(--bg-subtle);
+  background: var(--bg-elevated);
   border: 1px solid var(--border);
-  padding: 16px 20px;
-  border-radius: 6px;
+  padding: 18px 22px;
+  border-radius: 4px;
   margin: 16px 0;
   font-size: 14px;
-  line-height: 1.7;
+  line-height: 1.8;
 }
 
 .stat-box code {
   color: var(--accent);
-  background: var(--bg-elevated);
-  padding: 1px 6px;
+  background: var(--bg);
+  padding: 2px 7px;
   border-radius: 3px;
   font-family: 'SF Mono', Monaco, 'Cascadia Code', monospace;
   font-size: 13px;
@@ -492,12 +515,13 @@ footer p { margin-bottom: 10px; }
 
 @media (max-width: 600px) {
   main { padding: 32px 16px 16px; }
-  h1 { font-size: 28px; }
-  h2 { font-size: 20px; margin: 32px 0 12px; }
-  .ball { width: 44px; height: 44px; font-size: 18px; }
-  .oracle-card { padding: 20px 16px; }
-  .prophecy { font-size: 16px; padding: 18px 8px; }
-  nav a { padding: 10px 12px; font-size: 13px; }
+  h1 { font-size: 30px; }
+  h2 { font-size: 22px; margin: 32px 0 12px; }
+  .ball { width: 46px; height: 46px; font-size: 19px; }
+  .oracle-card { padding: 22px 18px; }
+  .prophecy { font-size: 17px; padding: 20px 8px; }
+  nav a { padding: 10px 14px; font-size: 13px; }
   .calendar-item .cal-date { min-width: 100%; }
+  .calendar-item:hover { padding-left: 8px; }
   .filter-bar input, .filter-bar select { min-width: 0; flex: 1; }
 }
